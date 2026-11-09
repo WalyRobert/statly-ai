@@ -1,0 +1,8 @@
+import {it,expect} from 'vitest';
+import {calculateStats,parseValues,parsePairs,pearson,describe} from '../services/statsEngine';
+it('preserva decimais brasileiros sem confundir separadores',()=>{expect(parseValues('1,5;2,5')).toEqual([1.5,2.5]);expect(calculateStats('1,5;2,5').mean).toBe(2);expect(parseValues('1.5,2.5','dot')).toEqual([1.5,2.5]);expect(()=>parseValues('1abc;2')).toThrow();expect(()=>parseValues('1.5;2,5')).toThrow();});
+it('calcula quartis R7 e variâncias com convenções explícitas',()=>{const s=describe([1,2,3,4]);expect(s.q1).toBe(1.75);expect(s.q3).toBe(3.25);expect(s.median).toBe(2.5);expect(s.variance).toBe(1.25);expect(describe([1,2,3,4],true).variance).toBeCloseTo(5/3);expect(describe([7],true).variance).toBeNull();});
+it('retorna indefinido para CV com média zero ou valores negativos',()=>{expect(describe([-1,1]).cv).toBeNull();expect(describe([-1,3]).cv).toBeNull();expect(describe([0,0]).cv).toBeNull();expect(describe([2,2]).cv).toBe(0);});
+it('histograma conta cada valor uma vez, inclusive constantes e máximo',()=>{for(const data of [[3,3,3],[1,2,3,4,100],[-10,-1,0,1,2,10]])expect(describe(data).histogram.reduce((s,b)=>s+b.count,0)).toBe(data.length);expect(describe([1,2,3,4,100]).outliers).toEqual([100]);});
+it('analisa pares explícitos e preserva correlação indefinida',()=>{expect(pearson(parsePairs('1,5;3\n2,5;5\n3,5;7','comma'))).toBeCloseTo(1);expect(pearson([[1,5],[2,3],[3,1]])).toBeCloseTo(-1);expect(pearson([[1,2],[1,3]])).toBeNull();expect(()=>parsePairs('1;2;3\n4;5;6','comma')).toThrow();});
+it('rejeita não finitos e entrada vazia',()=>{expect(()=>calculateStats('')).toThrow();expect(()=>calculateStats('NaN 1')).toThrow();expect(()=>describe([Infinity])).toThrow();expect(()=>describe([1e101])).toThrow();});

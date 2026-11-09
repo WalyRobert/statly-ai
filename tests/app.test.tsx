@@ -1,0 +1,3 @@
+import React from 'react';import {it,expect} from 'vitest';import {render,screen,fireEvent} from '@testing-library/react';import App from '../App';
+it('calcula o exemplo e invalida o resultado ao editar',()=>{render(<App/>);fireEvent.click(screen.getByRole('button',{name:'Exemplo sintético'}));fireEvent.click(screen.getByRole('button',{name:/^Calcular$/}));expect(screen.getByRole('heading',{name:'Estatísticas descritivas'})).toBeTruthy();fireEvent.change(screen.getByLabelText('Valores numéricos'),{target:{value:'1,5;2,5'}});expect(screen.queryByRole('heading',{name:'Estatísticas descritivas'})).toBeNull();});
+
