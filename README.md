@@ -39,3 +39,8 @@ npm run build
 Testes cobrem decimais brasileiros, quartis, variância, CV indefinido, histograma, pares, interface e proxy Gemini com respostas simuladas. Nenhuma chamada paga é necessária nos testes. O CI repete testes e build. XLSX pode expandir em memória além do tamanho compactado; evite arquivos não confiáveis.
 
 Protótipo educacional: sem testes de hipótese, inferência causal, certificação estatística ou relatórios DOCX/PDF. A interface foi adaptada para esta edição; o projeto do Studio não é sobrescrito. Licença de redistribuição ainda não definida pelo autor; dependências mantêm suas licenças.
+
+
+## Início e diagnóstico simplificados
+
+Após `npm ci`, execute `npm run diagnostico` para verificar Node, dependências, build e presença de configuração sem revelar chaves ou consumir cota. Execute `npm run iniciar` para compilar a versão atual e abrir o servidor local em um único terminal. A faixa de estado da interface distingue configuração ausente e integração ainda não comprovada. Encontrar uma chave não confirma que ela é válida nem que existe cota gratuita. Nenhum teste de geração é iniciado automaticamente.
