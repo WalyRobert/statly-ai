@@ -1,0 +1,3 @@
+import {it,expect} from 'vitest';import {describe,pearson} from '../services/statsEngine';
+it('confere média e variância contra resultados analíticos de uma progressão',()=>{const values=Array.from({length:100},(_,i)=>i+1);const population=describe(values),sample=describe(values,true);expect(population.mean).toBeCloseTo(50.5,12);expect(population.variance).toBeCloseTo(833.25,9);expect(sample.variance).toBeCloseTo(841.6666666666666,9);expect(population.median).toBe(50.5);});
+it('preserva correlação perfeita com escala elevada sem estourar produtos',()=>{expect(pearson([[1e100,2e100],[2e100,4e100],[3e100,6e100]])).toBeCloseTo(1,12);});
