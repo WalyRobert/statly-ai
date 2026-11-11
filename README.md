@@ -1,5 +1,7 @@
 # Statly AI
 
+![Statly AI — análise de dados e estatística](statly-ai-banner.jpeg)
+
 
 ## Escolher provedor e usar sua chave
 
@@ -69,3 +71,4 @@ Protótipo educacional: sem testes de hipótese, inferência causal, certificaç
 ## Início e diagnóstico simplificados
 
 Após `npm ci`, execute `npm run diagnostico` para verificar Node, dependências, build e presença de configuração sem revelar chaves ou consumir cota. Execute `npm run iniciar` para compilar a versão atual e abrir o servidor local em um único terminal. A faixa de estado da interface distingue configuração ausente e integração ainda não comprovada. Encontrar uma chave não confirma que ela é válida nem que existe cota gratuita. Nenhum teste de geração é iniciado automaticamente.
+
